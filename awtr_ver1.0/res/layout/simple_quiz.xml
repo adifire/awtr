@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/word_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+    <Button
+        android:id="@+id/def1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/word_textview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/def2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/def1"
+        android:layout_below="@+id/def1"
+        android:layout_marginTop="15dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/def3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/def2"
+        android:layout_below="@+id/def2"
+        android:layout_marginTop="16dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/def4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/def3"
+        android:layout_below="@+id/def3"
+        android:layout_marginTop="18dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/next_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/back_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Main" />
+
+    <TextView
+        android:id="@+id/quiz_talk_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/back_button"
+        android:layout_alignBottom="@+id/back_button"
+        android:layout_centerHorizontal="true"
+        android:text="" />
+
+</RelativeLayout>
