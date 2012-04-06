@@ -3,6 +3,9 @@ package app.awtr;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -76,4 +79,30 @@ public class Awtr_Main extends Activity {
         	new_quiz_button.setVisibility(View.VISIBLE);
         }
 	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	MenuInflater inflator = getMenuInflater();
+    	inflator.inflate(R.menu.main_menu, menu);
+    	return true;
+    }
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+    	case R.id.delete_menu_option:
+    		if(datasource.getWordCount() > 0) {
+				Intent sendAppInvite = new Intent();
+				sendAppInvite.setClass(Awtr_Main.this, DeleteWords.class);
+				startActivity(sendAppInvite);
+    		}
+    		return true;
+    	case R.id.about_menu_option:
+    		//Show the dialog
+    		return true;
+    	default:
+    		return super.onOptionsItemSelected(item);
+    	}
+	}
+	
 }

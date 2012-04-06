@@ -28,9 +28,6 @@ public class Word_Data_Source {
 	}
 	
 	public long addWord(String word, String definition) {
-	/*	String sql = "INSERT INTO " + WordList.DATABASE_TABLE_NAME +
-				"(" + WordList.WORD + "," + WordList.DEFINITION +
-				" VALUES(\"" + word + "\",\"" + definition + "\");"; */
 		ContentValues values = new ContentValues();
 		values.put(WordList.WORD, word);
 		values.put(WordList.DEFINITION, definition);
@@ -39,8 +36,8 @@ public class Word_Data_Source {
 	
 	public List<Word> getWords() {
 		List<Word> words = new ArrayList<Word>();
-		
 		Cursor cursor = database.query(WordList.DATABASE_TABLE_NAME, allColumns, null, null, null, null, "RANDOM()", "4");
+		
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
 			Word word = new Word(cursor.getString(0),cursor.getString(1));
@@ -48,13 +45,14 @@ public class Word_Data_Source {
 			cursor.moveToNext();
 		}
 		cursor.close();
+		
 		return words;
 	}
 	
 	public List<Word> getWords(Word notThis) {
 		List<Word> words = new ArrayList<Word>();
-		
 		Cursor cursor = database.query(WordList.DATABASE_TABLE_NAME, allColumns, null, null, null, null, "RANDOM()", "6");
+
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
 			Word word = new Word(cursor.getString(0),cursor.getString(1));
@@ -67,13 +65,14 @@ public class Word_Data_Source {
 			cursor.moveToNext();
 		}
 		cursor.close();
+		
 		return words;
 	}
 	
 	public List<Word> getAllWords() {
 		List<Word> words = new ArrayList<Word>();
-		
 		Cursor cursor = database.query(WordList.DATABASE_TABLE_NAME, allColumns, null, null, null, null, null);
+
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
 			Word word = new Word(cursor.getString(0),cursor.getString(1));
@@ -82,6 +81,22 @@ public class Word_Data_Source {
 			cursor.moveToNext();
 		}
 		cursor.close();
+		
+		return words;
+	}
+	
+	public List<String> getAllWordsS() {
+		List<String> words = new ArrayList<String>();
+		Cursor cursor = database.query(WordList.DATABASE_TABLE_NAME, allColumns, null, null, null, null, null);
+
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()) {
+			Word word = new Word(cursor.getString(0),cursor.getString(1));
+			words.add(word.getWord());
+			cursor.moveToNext();
+		}
+		cursor.close();
+		
 		return words;
 	}
 	
