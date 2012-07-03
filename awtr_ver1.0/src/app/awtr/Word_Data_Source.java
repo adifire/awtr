@@ -34,6 +34,17 @@ public class Word_Data_Source {
 		return database.insert(WordList.DATABASE_TABLE_NAME, null, values);
 	}
 	
+	public int updateWord(Word existing, String word_name, String definition) {
+		ContentValues values = new ContentValues();
+		values.put(WordList.WORD, word_name);
+		values.put(WordList.DEFINITION, definition);
+		Log.d("def: ", definition);
+		String[] whereArgs = {existing.getWord()};
+		int affected = database.update(WordList.DATABASE_TABLE_NAME, values, "WORD=?", whereArgs);
+		return affected;
+	}
+	
+	
 	public List<Word> getWords() {
 		List<Word> words = new ArrayList<Word>();
 		Cursor cursor = database.query(WordList.DATABASE_TABLE_NAME, allColumns, null, null, null, null, "RANDOM()", "4");
@@ -60,7 +71,6 @@ public class Word_Data_Source {
 				cursor.moveToNext();
 				continue;
 			}
-			Log.d("awtr:", "yup");
 			words.add(word);
 			cursor.moveToNext();
 		}
@@ -77,14 +87,13 @@ public class Word_Data_Source {
 		while(!cursor.isAfterLast()) {
 			Word word = new Word(cursor.getString(0),cursor.getString(1));
 			words.add(word);
-			words.add(word);
 			cursor.moveToNext();
 		}
 		cursor.close();
 		
 		return words;
 	}
-	
+		
 	public List<String> getAllWordsS() {
 		List<String> words = new ArrayList<String>();
 		Cursor cursor = database.query(WordList.DATABASE_TABLE_NAME, allColumns, null, null, null, null, null);
@@ -102,7 +111,7 @@ public class Word_Data_Source {
 	
 	public int getWordCount() {
 		int count = 0;
-		String sql = "SELECT COUNT(*) FROM " + WordList.DATABASE_TABLE_NAME + ";";
+		String sql = "SELECT COUNT(*) FROM " + WordList.DATABASE_TABLE_NAME;
 		Cursor cursor = database.rawQuery(sql, null);	
 		cursor.moveToFirst();
 		count = cursor.getInt(0);

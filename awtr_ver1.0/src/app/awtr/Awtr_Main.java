@@ -20,7 +20,7 @@ public class Awtr_Main extends Activity {
 	private Word_Data_Source datasource;
 	private int count;
 	private TextView talk;
-	private Button new_quiz_button, new_word_button;
+	private Button new_quiz_button, better_quiz_button, new_word_button;
     
 	private OnClickListener new_word_listener = new OnClickListener() {
 		
@@ -39,6 +39,14 @@ public class Awtr_Main extends Activity {
 			startActivity(createNewQuiz);
 		}
 	};
+	private OnClickListener better_quiz_listener= new OnClickListener() {
+		
+		public void onClick(View v) {
+			Intent createNewQuiz = new Intent();
+			createNewQuiz.setClass(Awtr_Main.this, BetterQuiz.class);
+			startActivity(createNewQuiz);
+		}
+	};;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,10 +55,12 @@ public class Awtr_Main extends Activity {
         
         talk = (TextView) findViewById(R.id.talk_text);
         new_quiz_button = (Button) findViewById(R.id.main_quiz_button);
+        better_quiz_button = (Button) findViewById(R.id.better_quiz_button);
         new_word_button = (Button) findViewById(R.id.new_word_button_1);
         
         new_word_button.setOnClickListener(new_word_listener);
         new_quiz_button.setOnClickListener(new_quiz_listener);
+        better_quiz_button.setOnClickListener(better_quiz_listener);
         
         datasource = new Word_Data_Source(this);
         
@@ -77,6 +87,8 @@ public class Awtr_Main extends Activity {
         }
         else if(count >= 10) {
         	new_quiz_button.setVisibility(View.VISIBLE);
+        	better_quiz_button.setVisibility(View.VISIBLE);
+        	talk.setText("You have " + Integer.toString(count) + " words in your account...");
         }
 	}
 	
@@ -97,8 +109,9 @@ public class Awtr_Main extends Activity {
 				startActivity(sendAppInvite);
     		}
     		return true;
-    	case R.id.about_menu_option:
-    		//Show the dialog
+    	case R.id.sync_menu_option:
+    		Intent intent = new Intent(this, Awtr_Service.class);
+    		startService(intent);
     		return true;
     	default:
     		return super.onOptionsItemSelected(item);

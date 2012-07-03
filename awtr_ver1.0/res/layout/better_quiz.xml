@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/word_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="Large Text"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/textView2_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/word_name_text"
+        android:layout_marginTop="62dp"
+        android:text="Means"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextSwitcher
+        android:id="@+id/def_switcher"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out" >
+    </TextSwitcher>
+
+    <Button
+        android:id="@+id/yes_quiz_button"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="34dp"
+        android:layout_toLeftOf="@+id/textView2_1"
+        android:text="Yes"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/no_quiz_button"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignBaseline="@+id/yes_quiz_button"
+        android:layout_alignBottom="@+id/yes_quiz_button"
+        android:layout_toRightOf="@+id/textView2_1"
+        android:text="No"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/talk_text_quiz_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/yes_quiz_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/score_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

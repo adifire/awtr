@@ -4,8 +4,13 @@
     <string name="hello">Hello World, Awtr_Main!</string>
     <string name="app_name">A Word To Remember</string>
     <string name="addWord">Add New Word</string>
-    <string name="newQuiz">Start a Quiz!</string>
+    <string name="newQuiz">Simple Quiz</string>
     <string name="cancel">Cancel</string>
     <string name="delete_top">Words selected</string>
+    <string name="update_word">Update the word</string>
+    <string name="try_again">Not that one, try again.</string>
+    <string name="wrong">Oops, this is the correct definition.</string>
+    <string name="better_quiz">Better Quiz</string>
+    <string name="correct">Righto!</string>
 
 </resources>
