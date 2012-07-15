@@ -53,7 +53,7 @@ public class DeleteWords extends ListActivity {
 		Intent showUpdate = new Intent();
 		showUpdate.setClass(this, ModifyWord.class);
 		Bundle extras = new Bundle();
-		extras.putString("word_name", datasource.getAllWords().get(position).word);
+		extras.putString("word_name", datasource.getAllWords().get(position).getWord());
 		showUpdate.putExtras(extras);
 		startActivity(showUpdate);
 	}

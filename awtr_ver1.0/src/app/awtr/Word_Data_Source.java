@@ -13,7 +13,7 @@ import android.util.Log;
 public class Word_Data_Source {
 	private SQLiteDatabase database;
 	private WordList dbHelper;
-	private String[] allColumns = { WordList.WORD, WordList.DEFINITION };
+	private String[] allColumns = { WordList.WORD, WordList.DEFINITION, "id" };
 	
 	public Word_Data_Source(Context context) {
 		dbHelper = new WordList(context);
@@ -44,6 +44,20 @@ public class Word_Data_Source {
 		return affected;
 	}
 	
+	public int updateWordId(Word word, int id) {
+		ContentValues values = new ContentValues();
+		values.put("id", id);
+		String[] whereArgs = {word.getWord()};
+		return database.update(WordList.DATABASE_TABLE_NAME, values, "WORD=?", whereArgs);
+	}
+	
+	public int updateWordId(Word word) {
+		ContentValues values = new ContentValues();
+		values.put("id", word.getId());
+		String[] whereArgs = {word.getWord()};
+		return database.update(WordList.DATABASE_TABLE_NAME, values, "WORD=?", whereArgs);
+	}
+	
 	
 	public List<Word> getWords() {
 		List<Word> words = new ArrayList<Word>();
@@ -51,7 +65,7 @@ public class Word_Data_Source {
 		
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
-			Word word = new Word(cursor.getString(0),cursor.getString(1));
+			Word word = new Word(cursor.getString(0),cursor.getString(1),cursor.getInt(2));
 			words.add(word);
 			cursor.moveToNext();
 		}
@@ -66,7 +80,7 @@ public class Word_Data_Source {
 
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
-			Word word = new Word(cursor.getString(0),cursor.getString(1));
+			Word word = new Word(cursor.getString(0),cursor.getString(1),cursor.getInt(2));
 			if(notThis.getWord().equals(word.getWord()) || words.size() >= 4) {
 				cursor.moveToNext();
 				continue;
@@ -85,7 +99,22 @@ public class Word_Data_Source {
 
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
-			Word word = new Word(cursor.getString(0),cursor.getString(1));
+			Word word = new Word(cursor.getString(0),cursor.getString(1),cursor.getInt(2));
+			words.add(word);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		
+		return words;
+	}
+	
+	public List<Word> getAllWordsWithoutId() {
+		List<Word> words = new ArrayList<Word>();
+		Cursor cursor = database.query(WordList.DATABASE_TABLE_NAME, allColumns, "ID is null", null, null, null, null);
+
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()) {
+			Word word = new Word(cursor.getString(0),cursor.getString(1),cursor.getInt(2));
 			words.add(word);
 			cursor.moveToNext();
 		}
@@ -100,7 +129,7 @@ public class Word_Data_Source {
 
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
-			Word word = new Word(cursor.getString(0),cursor.getString(1));
+			Word word = new Word(cursor.getString(0),cursor.getString(1),cursor.getInt(2));
 			words.add(word.getWord());
 			cursor.moveToNext();
 		}

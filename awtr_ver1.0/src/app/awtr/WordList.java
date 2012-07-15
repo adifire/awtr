@@ -8,7 +8,7 @@ import android.util.Log;
 public class WordList extends SQLiteOpenHelper {
 
 	public static String DATABASE_NAME = "myawtr";
-	public static int DATABASE_VERSION = 2;
+	public static int DATABASE_VERSION = 3;
 	public static String DATABASE_TABLE_NAME = "wordlist";
 	public static String WORD_TABLE = "word";
 	public static String WORD_LIST_TABLE = "list";
@@ -40,7 +40,8 @@ public class WordList extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.d("awtr:", "onUpgrade");
-		
+		String sql = "ALTER TABLE " + DATABASE_TABLE_NAME + " ADD COLUMN id INTEGER";
+		db.execSQL(sql);
 
 	}
 
